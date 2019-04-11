@@ -6,18 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MessageTest {
 
-    String[] to = {"Henry Dufour", "Jacaques Chirac"};
-    String[] cc = {"Marco Polo"};
-
-    @Test
-    public void constructorShoudlWork() {
-
-
-        Message message = new Message("monsieur", to, cc, "Subject", "Body");
-    }
 
     @Test
     public void gettersShouldWork() {
+
+        String[] to = {"Henry Dufour", "Jacaques Chirac"};
+        String[] cc = {"Marco Polo"};
+
         Message message = new Message("monsieur", to, cc, "Subject", "Body");
 
         assertEquals("monsieur", message.getFrom());

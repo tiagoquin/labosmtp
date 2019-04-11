@@ -7,9 +7,6 @@ import java.util.Scanner;
 
 public class ParserCSV {
 
-    private static ParserCSV instance;
-
-
     public List<String> parse (String path) {
 
         List<String> victimes = new ArrayList<>();
@@ -24,14 +21,5 @@ public class ParserCSV {
         }
 
         return victimes;
-    }
-
-    public static ParserCSV getInstance() {
-
-        if (instance == null) {
-            instance = new ParserCSV();
-        }
-
-        return instance;
     }
 }

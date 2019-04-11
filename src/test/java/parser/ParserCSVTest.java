@@ -9,7 +9,7 @@ class ParserCSVTest {
     @Test
     public void shoudlFindTheFiles() {
 
-        assertNotNull(ParserCSV.getInstance().parse("victimes.csv"));
+        assertNotNull(new ParserCSV().parse("victimes.csv"));
     }
 
 }
