@@ -8,6 +8,7 @@ import java.net.Socket;
 public class SmtpClient implements ISmtpClient {
 
     // Some SMTP response codes
+    static final String SERVICE_READY = "220";
     static final String REQUEST_OKAY = "250";
     static final String START_INPUT = "354";
 
@@ -29,7 +30,7 @@ public class SmtpClient implements ISmtpClient {
         this.address = address;
         this.port = port;
 
-        socket = new Socket(address, port);
+        socket = new Socket(this.address, this.port);
 
         writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
@@ -41,7 +42,9 @@ public class SmtpClient implements ISmtpClient {
 
         System.out.println("Sending a message");
 
-        if (!this.contactSMTPServer() ) {
+        this.contactSMTPServer();
+
+        if (!currentLine.startsWith(REQUEST_OKAY)) {
             throw new IOException("SMTP server didn't say okay : " + currentLine);
         }
 
@@ -58,15 +61,13 @@ public class SmtpClient implements ISmtpClient {
 
     }
 
-    private boolean contactSMTPServer() throws IOException {
+    private void contactSMTPServer() throws IOException {
 
         this.readOneLine();
 
-        writer.printf("EHLO itsamemario" + CRLF); // We say Hello to the server.
+        writer.printf("EHLO tiago.povoaquinteiro@heig-vd.ch" + CRLF); // We say Hello to the server.
 
         this.readOneLine();
-
-        return currentLine.startsWith(REQUEST_OKAY);
     }
 
     private void writeMessage () throws IOException {
@@ -80,7 +81,7 @@ public class SmtpClient implements ISmtpClient {
         this.readOneLine();
 
         // To: RCPT TO
-        writer.write(String.format("RCPT TO: %s%s", "Camille", CRLF)); // TODO: 2019-04-10 plusieurs
+        writer.write(String.format("RCPT TO: %s%s", "tiago.povoaquinteiro@heig-vd.ch", CRLF)); // TODO: 2019-04-10 plusieurs
         writer.flush();
 
         this.readOneLine();
@@ -93,7 +94,7 @@ public class SmtpClient implements ISmtpClient {
 
         this.readOneLine();
 
-        writer.write(String.format("content-type text/plain; charset=\"utf-8\" %s", CRLF));
+        writer.write(String.format("Content-Type: text/plain; charset=\"utf-8\" %s", CRLF));
 
 
 /*        currentLine = reader.readLine();
@@ -103,11 +104,11 @@ public class SmtpClient implements ISmtpClient {
 
         writer.write(String.format("From: %s %s", message.getFrom(), CRLF));
 
-        writer.write(String.format("To: %s %s", "Testitesto", CRLF)); // TODO: 2019-04-10 plusieurs
+        writer.write(String.format("To: %s %s", "tiago.povoaquinteiro@heig-vd.ch", CRLF)); // TODO: 2019-04-10 plusieurs
 
         writer.write(String.format("Subject: %s %s", message.getSubject(), CRLF));
 
-        writer.write(String.format("Body: %s %s", message.getBody(), CRLF));
+        writer.write(String.format("%s %s", CRLF, message.getBody()));
         writer.flush();
 
         // Data over
@@ -130,7 +131,7 @@ public class SmtpClient implements ISmtpClient {
         String[] to = {"camille@mail.com"};
         String[] cc = {};
 
-        smtpClient.sendMessage(new Message("remy@mail.com", to, cc, "étoiles, magie Voyances", "ça va ? Moi aussi"));
+        smtpClient.sendMessage(new Message("tiago.povoaquinteiro@heig-vd.ch", to, cc, "étoiles, magie Voyances", "ça va ? Moi aussi"));
     }
 
 }
