@@ -4,7 +4,7 @@
 >
 > Gabrielli Alexandre, Póvoa Tiago
 
-## Description
+## Description
 
 Ce laboratoire permet d'envoyer des mails fictifs à un serveur MockMock. On peut configurer son comportement avec les ressources:
 
@@ -12,7 +12,7 @@ Ce laboratoire permet d'envoyer des mails fictifs à un serveur MockMock. On peu
 * jokes.utf8
 * victimes.utf8
 
-## Guide d'installation
+## Guide d'installation
 
 Au chemin suivant: 
 
