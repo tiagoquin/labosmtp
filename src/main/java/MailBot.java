@@ -1,21 +1,48 @@
 import config.ConfigReader;
-import parser.ParserCSV;
+import model.mail.Message;
+import model.prank.Prank;
+import model.prank.PrankGen;
+import parser.SimpleParser;
 import smtp.ISmtpClient;
 import smtp.SmtpClient;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class MailBot {
 
+    final static String SEPARATOR_JOKE = "-..-";
+    final static String SEPARATOR_TITLE = "-.-";
+
+
     public static void main(String ... args) throws IOException {
 
         ConfigReader configReader = new ConfigReader("config.properties");
 
-        List<String> victimes = ParserCSV.parse("victimes.csv");
+        // Add jokes
+        List<String> lines = new SimpleParser(SEPARATOR_JOKE).parse("jokes.utf8");
 
-        ISmtpClient smtpClient = new SmtpClient(configReader.getAddress(), configReader.getPort());
+        List<Prank> pranks = new PrankGen().generate();
+        List<Message> messages = new ArrayList<>();
 
+        int i = 0;
+        for (Prank prank : pranks) {
+            String[] str = lines.get(i++).split(SEPARATOR_TITLE);
+
+            Message message = prank.generateMessage();
+
+            message.setSubject(str[0]);
+            message.setBody(str[1]);
+
+            messages.add(message);
+        }
+
+        for (Message message: messages) {
+            ISmtpClient smtpClient = new SmtpClient(configReader.getAddress(), configReader.getPort());
+
+            smtpClient.sendMessage(message);
+        }
     }
 }

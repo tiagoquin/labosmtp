@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ParserCSVTest {
+class SimpleParserTest {
 
     @Test
     public void shoudlFindTheFiles() {
 
-        assertNotNull(new ParserCSV().parse("victimes.csv"));
+        assertNotNull(new SimpleParser("\n").parse("victimes.utf8"));
     }
 
 }

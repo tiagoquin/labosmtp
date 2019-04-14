@@ -1,13 +1,13 @@
 package config;
 
 import lombok.Getter;
-import parser.ParserCSV;
+import parser.SimpleParser;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ConfigReader {
+public class ConfigReader implements IConfig{
 
     String path;
 
@@ -17,11 +17,17 @@ public class ConfigReader {
     @Getter
     int port;
 
+    @Getter
+    int nbGroups;
+
+    @Getter
+    String Witness;
+
     public ConfigReader(String path) throws IOException {
 
         this.path = path;
 
-        InputStream inputStream = ParserCSV.class.getClassLoader().getResourceAsStream(this.path);
+        InputStream inputStream = SimpleParser.class.getClassLoader().getResourceAsStream(this.path);
 
         Properties props = new Properties();
         props.load(inputStream);
@@ -30,6 +36,8 @@ public class ConfigReader {
 
         port = Integer.parseInt(props.getProperty("Port"));
 
+        nbGroups = Integer.parseInt(props.getProperty("NbGroups"));
 
+        Witness = props.getProperty("Witness");
     }
 }
