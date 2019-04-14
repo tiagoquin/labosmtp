@@ -28,6 +28,17 @@ Au chemin suivant:
 
 un petit exécutable `run.sh` est fournit. Il va build l'image docker avec le MockMock.jar à l'intérieur et mapper les ports 2525 et 8080 (et les exposer).
 
+Puis, afin d'exécuter le code du projet
+
+> mvn clean install
+
+Il faudra ensuite exécuter le jar dans target 
+
+>java -jar labo-smtp-1.0-launcher.jar
+
+*=> Cette étape génère une erreur " Caused by: java.lang.ClassNotFoundException: heig-vd.ch.bot.MailBot "
+Pas compris comment on devait lui préciser la méthode main dans le pom.xml*
+
 ## Explications
 
 Ce server SMTP factice va permettre de faire des tests. 
