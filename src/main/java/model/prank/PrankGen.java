@@ -59,10 +59,4 @@ public class PrankGen {
 
         return pranks;
     }
-
-    public static void main(String... args) throws IOException {
-        PrankGen pg = new PrankGen();
-
-        pg.generate();
-    }
 }
