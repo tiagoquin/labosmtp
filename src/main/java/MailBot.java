@@ -8,13 +8,14 @@ import smtp.SmtpClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
 public class MailBot {
 
-    final static String SEPARATOR_JOKE = "-..-";
-    final static String SEPARATOR_TITLE = "-.-";
+    final static String SEPARATOR_JOKE = "\n-..-\n";
+    final static String SEPARATOR_TITLE = "\n-.-\n";
 
 
     public static void main(String ... args) throws IOException {
@@ -41,6 +42,8 @@ public class MailBot {
 
         for (Message message: messages) {
             ISmtpClient smtpClient = new SmtpClient(configReader.getAddress(), configReader.getPort());
+
+            System.out.println("\n --- \n");
 
             smtpClient.sendMessage(message);
         }

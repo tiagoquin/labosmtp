@@ -103,8 +103,6 @@ public class SmtpClient implements ISmtpClient {
      */
     private void writeHeader () throws IOException {
 
-        System.out.println(" - Sending from");
-
         // From: MAIL FROM
         writer.write(String.format("MAIL FROM:<%s>%s", message.getFrom(), CRLF));
         writer.flush();
