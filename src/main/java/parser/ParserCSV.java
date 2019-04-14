@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ParserCSV {
 
-    public List<String> parse (String path) {
+    public static List<String> parse (String path) {
 
         List<String> victimes = new ArrayList<>();
 

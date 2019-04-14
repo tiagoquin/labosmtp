@@ -1,5 +1,6 @@
-package model.mail;
+package model;
 
+import model.mail.Message;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,5 +1,4 @@
 import config.ConfigReader;
-import model.mail.Message;
 import parser.ParserCSV;
 import smtp.ISmtpClient;
 import smtp.SmtpClient;
@@ -14,7 +13,7 @@ public class MailBot {
 
         ConfigReader configReader = new ConfigReader("config.properties");
 
-        List<String> victimes = new ParserCSV().parse("victimes.csv");
+        List<String> victimes = ParserCSV.parse("victimes.csv");
 
         ISmtpClient smtpClient = new SmtpClient(configReader.getAddress(), configReader.getPort());
 
