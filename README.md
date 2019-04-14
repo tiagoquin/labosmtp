@@ -36,11 +36,11 @@ Le port 2525 est celui auquel on envoie les mails.
 
 Le port 8080 quant à lui permet de se connecter à une page web qui montre ce qui a été reçu.
 
-## Implémentation
+## Implémentation
 
 Diagramme uml:
 
-![SmtpClient](/Users/chadanlo/Documents/res/labosmtp/SmtpClient.png)
+![SmtpClient](SmtpClient.png)
 
 
 
@@ -48,4 +48,4 @@ Le point d'entrée est Mailbot. Il est responsable d'appeler le PrankGen pour fo
 
 L'image suivante montre un dialogue réussit.
 
-![Dialog](/Users/chadanlo/Documents/res/labosmtp/Dialog.png)
+![Dialog](Dialog.png)
