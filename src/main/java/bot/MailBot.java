@@ -12,7 +12,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Entrypoint of the Application
+ * Calls PrankGen to recover Messages then sends them with SmtpClient
+ */
 public class MailBot {
 
     final static String SEPARATOR_JOKE = "\n-..-\n";

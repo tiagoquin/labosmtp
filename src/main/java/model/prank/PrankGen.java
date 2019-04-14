@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Generates the messages.
+ * This class is also responsible of generating the correct sized groups
+ */
 public class PrankGen {
 
     IConfig Config;
