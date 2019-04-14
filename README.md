@@ -18,5 +18,5 @@ Au chemin suivant:
 
 > /install/run.sh
 
-un petit exécutable `run.sh` est fournit. Il va créer build l'image docker avec le MockMock.jar à l'intérieur et mapper les ports 2525 et 8080 (et les exposer).
+un petit exécutable `run.sh` est fournit. Il va build l'image docker avec le MockMock.jar à l'intérieur et mapper les ports 2525 et 8080 (et les exposer).
 
